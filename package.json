@@ -1,0 +1,32 @@
+{
+  "name": "express-dice-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node --env-file-if-exists=.env src/index.js",
+    "dev": "node --env-file-if-exists=.env --watch src/index.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexStormwood/express-dice-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AlexStormwood/express-dice-api/issues"
+  },
+  "homepage": "https://github.com/AlexStormwood/express-dice-api#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-jsdoc-swagger": "^1.8.0",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "supertest": "^7.2.2"
+  }
+}
