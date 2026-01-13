@@ -1,4 +1,4 @@
-FROM dhi.io/node:25-debian13-sfw-ent-dev
+FROM node:alpine
 
 # Set the working directory of the Docker image
 # for everything else to happen in.
