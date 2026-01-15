@@ -44,7 +44,7 @@ jobs:
         run: |
           echo "VERSION_TAG=${ACTIVE_TAG,,}" >>${GITHUB_ENV}
         env:
-          ACTIVE_TAG: '${{ github.ref_name || inputs.new-version-tag }}'
+          ACTIVE_TAG: '${{ inputs.new-version-tag || github.ref_name }}'
 
       - name: Sanitise env data for Docker image tagging
         run: |
