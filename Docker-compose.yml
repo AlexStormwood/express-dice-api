@@ -10,5 +10,6 @@ services:
     env_file: .env
     environment:
       - SOMEOTHERENVVARIABLE=SOMEVALUEHERE
+      - ANOTHERENVVARIABLE=BANANAS
     ports:
       - 3500:3000
