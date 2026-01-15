@@ -1,0 +1,37 @@
+name: Docker Compose Linter
+
+on:
+ pull_request:
+  types:
+    - opened
+    - edited
+    - reopened
+  branches:
+    - 'main'
+  paths:
+    - 'Docker-compose.yml'
+
+
+
+permissions:
+  pull-requests: write
+
+jobs:
+  linter-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v6
+
+        # Get the name of the current directory
+      - run: pwd
+        # Show all files in current directory
+      - run: ls
+
+      - name: Docker Compose linting
+        uses: docker-compose-linter/dclint-github-action/reviewdog-action@v1.6.0
+        with:
+          reporter: github-pr-review # Default is `github-pr-check`
+          dclint_flags: ./Docker-compose.yml # Default is `.`
+          filter_mode: file
+
