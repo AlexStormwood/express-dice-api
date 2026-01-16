@@ -81,3 +81,5 @@ jobs:
           tags: |
             ghcr.io/${{env.REPO_LC}}:latest
             ghcr.io/${{env.REPO_LC}}:${{env.VERSION_TAG}}
+        env:
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
