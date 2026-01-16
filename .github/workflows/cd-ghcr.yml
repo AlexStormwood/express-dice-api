@@ -40,6 +40,9 @@ jobs:
       #     echo "Created image tag: ${TAG}"
       #     echo "${TAG}" > tag.txt
 
+      - name: Check secret key
+        run: echo ${{ secrets.EXAMPLESECRET }}
+
       - name: Get the image version tag from either dispatch or ref
         run: |
           echo "VERSION_TAG=${ACTIVE_TAG,,}" >>${GITHUB_ENV}
