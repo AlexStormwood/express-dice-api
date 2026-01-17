@@ -9,6 +9,8 @@ function rollDice(sides, numberOfDice) {
   return results;
 }
 
+var bananas = "bananas";
+
 module.exports = {
 	  rollDice
 }
