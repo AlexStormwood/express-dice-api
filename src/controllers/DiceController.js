@@ -1,6 +1,9 @@
 
-const router = require("express").Router();
 const { rollDice } = require("../utils/dice/diceRolling");
+const router = require("express").Router();
+const { bananas } = require("../utils/dice/diceRolling");
+
+
 
 /**
  * GET /dice/{sides}/{numberOfDice}

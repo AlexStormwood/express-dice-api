@@ -1,0 +1,17 @@
+name: ESLint Runner
+
+on: [pull_request]
+
+jobs:
+  eslinter:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: reviewdog/action-eslint@v1.34.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          eslint_flags: "src/"

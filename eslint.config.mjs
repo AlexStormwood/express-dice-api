@@ -8,10 +8,17 @@ export default defineConfig([
     plugins: { js }, 
     extends: ["js/recommended"], 
     languageOptions: { globals: globals.node },
+    
+  },
+  { 
+    files: ["**/*.js"], 
+    languageOptions: { sourceType: "commonjs" }
+  },
+  {
     rules: {
       "prefer-const":"warn",
-      "no-constant-binary-expression":"error"
+      "no-constant-binary-expression":"error",
+      "no-duplicate-imports":"error"
     }
-  },
-  { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
+  }
 ]);

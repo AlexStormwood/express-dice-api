@@ -12,5 +12,6 @@ function rollDice(sides, numberOfDice) {
 var bananas = "bananas";
 
 module.exports = {
-	  rollDice
+	  rollDice,
+    bananas
 }
