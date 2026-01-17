@@ -21,8 +21,9 @@ COPY src ./src/
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-ARG JWT_SECRET_KEY=somedefaultkeyhere
-ENV JWT_SECRET_KEY=${JWT_SECRET_KEY}
+# ARG JWT_SECRET_KEY=somedefaultkeyhere
+# ENV JWT_SECRET_KEY=${JWT_SECRET_KEY}
+RUN --mount=type=secret,id=jwt_secret_key
 
 # Run the app
 CMD ["npm", "start"]
