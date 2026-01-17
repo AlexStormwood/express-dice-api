@@ -23,7 +23,7 @@ ENV NODE_ENV=${NODE_ENV}
 
 # ARG JWT_SECRET_KEY=somedefaultkeyhere
 # ENV JWT_SECRET_KEY=${JWT_SECRET_KEY}
-RUN --mount=type=secret,id=jwt_secret_key
+RUN --mount=type=secret,id=jwt_secret_key,env=JWT_SECRET_KEY
 
 # Run the app
 CMD ["npm", "start"]

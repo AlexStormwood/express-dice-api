@@ -14,8 +14,8 @@ services:
       - 3500:3000
 
   downloaded:
-    image: ghcr.io/alexstormwood/express-dice-api:v0.0.4
+    image: ghcr.io/alexstormwood/express-dice-api:latest
     ports:
       - 3501:3000
-    environment:
-      - JWT_SECRET_KEY=somenewlocalvalue
+    # environment:
+    #   - JWT_SECRET_KEY=somenewlocalvalue
