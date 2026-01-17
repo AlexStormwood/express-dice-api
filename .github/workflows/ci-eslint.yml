@@ -15,3 +15,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           eslint_flags: "src/"
+      - uses: tj-actions/eslint-changed-files@v25.3.2
+        with:
+          config_path: "./eslint.config.mjs"
