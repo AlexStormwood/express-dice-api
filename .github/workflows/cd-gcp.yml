@@ -24,7 +24,10 @@ jobs:
         uses: 'google-github-actions/deploy-cloudrun@v3'
         with:
           service: 'express-dice-api'
-          image: 'ghcr.io/alexstormwood/express-dice-api:latest'
+          # image: 'ghcr.io/alexstormwood/express-dice-api:latest'
+          source: "./"
+          env_vars: |
+            JWT_SECRET=${{secrets.JWT_SECRET_KEY}}
 
       - name: 'Use output'
         run: 'curl "${{ steps.deploy.outputs.url }}"'
