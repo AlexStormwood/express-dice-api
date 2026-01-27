@@ -1,0 +1,51 @@
+name: CD - AWS EC2
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v6
+
+      - name: Install project dependencies
+        run: npm install 
+
+      - name: Upload the project to EC2
+        uses: appleboy/scp-action@v1.0.0
+        with:
+          # Hostname or IP address of the EC2 instance
+          host: ${{ secrets.EC2_HOST }}
+          # User from the EC2 instance settings, should just be "ec2-user"
+          username: ${{ secrets.EC2_USER }}
+          # SSH private key created when making the EC2 instance, saved to your PC
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          # the root directory of the stuff we want to send to the EC2 instance
+          source: "."
+          # the destination folder on the EC2 instance where the source files will be copied to
+          target: "/home/${{secrets.EC2_USER}}/express-dice-api"
+          # Delete any old files from previous deployments to the EC2 server 
+          rm: true
+          # Extract the uploaded file contents directly to the target directory, no extra directories in the way
+          strip_components: 1
+
+      - name: Run the server on the EC2 instance 
+        uses: appleboy/ssh-action@v1.2.4
+        with:
+          # Hostname or IP address of the EC2 instance
+          host: ${{ secrets.EC2_HOST }}
+          # User from the EC2 instance settings, should just be "ec2-user"
+          username: ${{ secrets.EC2_USER }}
+          # SSH private key created when making the EC2 instance, saved to your PC
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          # Terminal commands to run on the EC2 instance via this action
+          script: |
+            cd /home/${{secrets.EC2_USER}}/express-dice-api
+            npm install --production 
+
+            sudo npm install -g pm2 
+
+            pm2 restart ${{ secrets.PM2_PROCESS_NAME }} || pm2 start npm --name ${{ secrets.PM2_PROCESS_NAME}} -- start
+        
